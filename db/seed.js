@@ -1,44 +1,36 @@
 const db = require('../db')
 
-const seedProducts = () => db.Promise.map([
-  {title: 'Hats',category: ['Clothes','Accessories'], current_price: 16, description: 'Fedora with a feather', availability: true, inventory: 100, promo_id: 1},
-  {title: 'Ski Suits',category: ['Athletics', 'Clothes'], current_price: 11, description: 'Full body ski suit', availability: false, inventory: 5, promo_id: 1},
-  {title: 'Fanny Pack',category: ['Accessories'], current_price: 12, description: 'Bright neon in all colors', availability: true, inventory: 64, promo_id: 1},
-  {title: 'Chuck Taylors',category: ['Clothes','Shoes'], current_price: 15, description: 'A variation on a classsic', availability: false, inventory: 35},
-  {title: 'Hairspray',category: ['Beauty'], current_price: 41, description: 'Full of CFCs', availability: true, inventory: 22, promo_id: 2},
-  {title: 'Socks',category: ['Clothes'], current_price: 51, description: 'Big wooly socks', availability: true, inventory: 21},
-  {title: 'Wigs', category: ['Accessories', 'Beauty'], current_price: 21, description: 'Business in the front, party in the back', availability: false, inventory: 100, promo_id: 2},
-  {title: 'Chanel', category: ['Beauty'], current_price: 49, description: 'Chanel loose powder', availability: true, inventory: 100, promo_id: 2},
-  {title: 'Cosmetics', category: ['Beauty'], current_price: 31, description: 'Revlon violet pink set', availability: true, inventory: 100, promo_id: 2},
-  {title: 'Covergirl', category: ['Beauty'], current_price: 21, description: 'Cosmetics for the young generation', availability: false, inventory: 100, promo_id: 2},
-  {title: 'Dior', category: ['Beauty'], current_price: 49, description: 'Luxury for your face', availability: true, inventory: 100, promo_id: 2},
-  {title: 'Dolls', category: ['Accessories'], current_price: 9, description: 'For your room', availability: false, inventory: 100, promo_id: 2},
-  {title: 'HighHeels', category: ['Shoes'], current_price: 27, description: 'Edge on your heel', availability: true, inventory: 100, promo_id: 2},
-  {title: 'PinkSuit', category: ['Accessories', 'Clothes'], current_price: 22, description: 'Everything for your pink day', availability: false, inventory: 100, promo_id: 2},
-  {title: 'Technicolor', category: ['Accessories', 'Clothes'], current_price: 31, description: 'Freedom', availability: false, inventory: 100, promo_id: 2},
-  {title: 'Sneakers', category: ['Shoes', 'Athletics'], current_price: 62, description: 'Comply with your style', availability: false, inventory: 100, promo_id: 2},
-  {title: 'FlyWatch', category: ['Accessories'], current_price: 20, description: 'What time is it now? 19: 08 ! ', availability: false, inventory: 100, promo_id: 2},
-  {title: 'ThatWig', category: ['Accessories', 'Beauty'], current_price: 21, description: 'Party people', availability: false, inventory: 100, promo_id: 1},
-  {title: 'Training set', category: ['Athletics', 'Clothes'], current_price: 21, description: 'Lion look', availability: false, inventory: 100, promo_id: 1},
-  {title: 'Training suit for couple', category: ['Athletics', 'Clothes'], current_price: 21, description: 'Lion look', availability: false, inventory: 100, promo_id: 1},
-], product => db.model('products').create(product));
+const seedUsers = () => db.Promise.map([
+  { id: 1, username: "JBinder919" },
+  { id: 2, username: "Otto-P" },
+  { id: 3, username: "kingjames23" },
+  { id: 4, username: "brdmn" },
+], user => db.model('users').create(user));
 
-const seedReviews = () => db.Promise.map([
- {rating: 1, review_text: "awful",product_id:5},
- {rating: 1, review_text: "if you have too much extra money ",product_id:1},
- {rating: 5, review_text: "the best!",product_id:2},
- {rating: 2, review_text: "waste of money",product_id:3},
- {rating: 3, review_text: "can be better",product_id:4},
- {rating: 3, review_text: "should be better",product_id:6},
- {rating: 4, review_text: "good price",product_id:7},
- {rating: 4, review_text: "just like description",product_id:1}
- ], review => db.model('reviews').create(review));
+const seedPosts = () => db.Promise.map([
+  { id: 1, caption: "Play it like a song!", likes: 56, display_src: "https://lh6.googleusercontent.com/-24-N4DZIl-o/AAAAAAAAAAI/AAAAAAAAHVk/0MHWykKAbbQ/s0-c-k-no-ns/photo.jpg" },
+  { id: 2, caption: "Pound it!", likes: 59, display_src: "https://media.tenor.co/images/8cbb6538ffae107647ed0c5ba52961c1/raw" },
+  { id: 3, caption: "Hi, Gibbles.", likes: 79, display_src: "https://usatftw.files.wordpress.com/2017/02/usatsi_9863193_168380427_lowres.jpg" },
+  { id: 4, caption: "Bad Offense", likes: 47, display_src: "https://usatthebiglead.files.wordpress.com/2014/02/lebron-james-game-winning-3-against-golden-state.gif" },
+  { id: 5, caption: "What goes up...", likes: 66, display_src: "http://fansided.com/files/2016/01/lebron-james-nba-cleveland-cavaliers-philadelphia-76ers-3.jpg" },
+  { id: 6, caption: "...must come down.", likes: 33, display_src: "https://usatthebiglead.files.wordpress.com/2014/02/lebron-james-celebrates-game-winning-3-against-golden-state.gif?w=640&h=369" }
+], post => db.model('posts').create(post));
+
+const seedComments = () => db.Promise.map([
+ { id: 1, user_id: 1, post_id :1, text: "You're doing it wrong." },
+ { id: 2, user_id: 2, post_id :3, text: "Did that even go in?" },
+ { id: 3, user_id: 3, post_id :5, text: "Bet your ass it did!" },
+ { id: 4, user_id: 4, post_id :5, text: "He's a Warrior killer!" },
+ { id: 5, user_id: 3, post_id :5, text: "Sucks to be those fans." }
+ ], comment => db.model('comments').create(comment));
 
  db.didSync
    .then(() => db.sync({force: true}))
-   .then(seedProducts)
-   .then(products => console.log(`Seeded ${products.length} products OK`))
-   .then(seedReviews)
-   .then(reviews => console.log(`Seeded ${reviews.length} reviews OK`))
+   .then(seedUsers)
+   .then(users => console.log(`Seeded ${users.length} users OK`))
+   .then(seedPosts)
+   .then(posts => console.log(`Seeded ${posts.length} posts OK`))
+   .then(seedComments)
+   .then(comments => console.log(`Seeded ${comments.length} comments OK`))
    .catch(error => console.error(error))
    .finally(() => db.close())

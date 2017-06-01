@@ -1,12 +1,12 @@
 const db = require('../db') //this is required
-const Review = require('../db/models/review');
-const Product = require('../db/models/product');
+const Comment = require('../db/models/comment');
+const Post = require('../db/models/post');
 
 const router = require('express').Router()
 
 router.get('/', function(req, res, next) {
-    Review.findAll({
-            include: [Product]
+    Comment.findAll({
+            include: [Post]
         })
         .then(result => {
             res.status(200).send(result);
@@ -15,9 +15,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:id', function(req, res, next) {
-    Review.findOne({
+    Comment.findOne({
             where:{id:req.params.id},
-            include: [Product]
+            include: [Post]
         })
         .then(result => {
             res.status(200).send(result);
