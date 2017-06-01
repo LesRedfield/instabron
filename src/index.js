@@ -5,8 +5,8 @@ import { render } from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 
 // Import css
-import './index.css';
-// import css from './styles/style.styl';
+// import './index.css';
+import css from './styles/style.css';
 
 // Import Components
 import App from './App';
