@@ -17,11 +17,11 @@ const seedPosts = () => db.Promise.map([
 ], post => db.model('posts').create(post));
 
 const seedComments = () => db.Promise.map([
- { id: 1, user_id: 1, post_id :1, text: "You're doing it wrong." },
- { id: 2, user_id: 2, post_id :3, text: "Did that even go in?" },
- { id: 3, user_id: 3, post_id :5, text: "Bet your ass it did!" },
- { id: 4, user_id: 4, post_id :5, text: "He's a Warrior killer!" },
- { id: 5, user_id: 3, post_id :5, text: "Sucks to be those fans." }
+ { id: 1, user: "JBinder919", post_id :1, text: "You're doing it wrong." },
+ { id: 2, user: "Otto-P", post_id :3, text: "Did that even go in?" },
+ { id: 3, user: "kingjames23", post_id :5, text: "Bet your ass it did!" },
+ { id: 4, user: "brdmn", post_id :5, text: "He's a Warrior killer!" },
+ { id: 5, user: "kingjames23", post_id :5, text: "Sucks to be those fans." }
  ], comment => db.model('comments').create(comment));
 
  db.didSync

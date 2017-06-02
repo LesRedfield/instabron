@@ -11,9 +11,7 @@ function posts(state = [], action) {
     case 'REQUEST_POSTS' :
       return state;
     case 'RECEIVE_POSTS' :
-      return [
-        ...action.posts
-      ]
+      return [...action.posts].sort((a, b) => a.id - b.id);
 
     // debugger
     //   return Object.assign({}, state, {

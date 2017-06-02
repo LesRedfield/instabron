@@ -5,6 +5,7 @@ const comments = require('./comments');
 
 const Post = require('../db/models/post');
 const Comment = require('../db/models/comment');
+const User = require('../db/models/user');
 // import products from './products';
 api
   .get('/express-test', (req, res) => res.send({express: 'working!'})) //demo route to prove api is working
@@ -16,6 +17,9 @@ api
               res.status(200).send(result);
           })
           .catch(next);
+  })
+  .post('/comments', function(req, res, next) {
+      console.log(req);
   })
   .use('/users', users)
   // .use('/posts', posts)

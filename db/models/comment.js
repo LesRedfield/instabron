@@ -12,13 +12,9 @@ const Comment = db.define('comments', {
     primaryKey: true,
     allowNull: false,
   },
-  user_id: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    references: {
-      model: User,
-      key: 'id'
-    }
+  user: {
+    type: Sequelize.STRING,
+    allowNull: false
   },
   post_id: {
     type: Sequelize.INTEGER,

@@ -10,9 +10,7 @@ const Single = React.createClass({
       post.id === parseInt(postId));
     const post = this.props.posts[i];
 
-    const postComments = this.props.comments[postId] || [];
-
-    debugger
+    const postComments = post.comments || [];
 
     return (
       <div className="single-photo">
