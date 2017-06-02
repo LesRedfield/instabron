@@ -8,6 +8,17 @@ function posts(state = [], action) {
         ...state.slice(i + 1),
 
       ]
+    case 'REQUEST_POSTS' :
+      return state;
+    case 'RECEIVE_POSTS' :
+      return [
+        ...action.posts
+      ]
+
+    // debugger
+    //   return Object.assign({}, state, {
+    //     posts: action.posts
+    //   });
     default:
       return state;
   }

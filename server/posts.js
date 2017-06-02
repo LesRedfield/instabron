@@ -4,7 +4,7 @@ const Comment = require('../db/models/comment');
 
 const router = require('express').Router()
 
-router.get('/', function(req, res, next) {
+router.get('/posts', function(req, res, next) {
     Post.findAll({
             include: [Comment]
         })

@@ -7,10 +7,12 @@ const Single = React.createClass({
     const { postId } = this.props.params;
 
     const i = this.props.posts.findIndex((post) =>
-      post.code === postId);
+      post.id === parseInt(postId));
     const post = this.props.posts[i];
 
     const postComments = this.props.comments[postId] || [];
+
+    debugger
 
     return (
       <div className="single-photo">
