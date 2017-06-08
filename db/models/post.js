@@ -7,7 +7,8 @@ const Post = db.define('posts', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
-    allowNull: false
+    allowNull: false,
+    autoIncrement: true
   },
   caption: {
   	type: Sequelize.STRING,

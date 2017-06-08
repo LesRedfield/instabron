@@ -1,8 +1,6 @@
 import React from 'react';
 import Photo from './Photo';
 
-// import { fetchPosts } from '../actions/actionCreators';
-
 const PhotoGrid = React.createClass({
 
   componentDidMount() {

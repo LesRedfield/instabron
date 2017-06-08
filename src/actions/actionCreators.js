@@ -1,3 +1,6 @@
+import axios from 'axios';
+
+
 export function increment(index) {
   return {
     type: 'INCREMENT_LIKES',
@@ -6,11 +9,17 @@ export function increment(index) {
 }
 
 export function addComment(postId, author, comment) {
+  console.log('1');
+  debugger
+  const request = axios.post('/api/comments', {
+    postId: postId,
+    author: author,
+    comment: comment
+  });
+
   return {
     type: 'ADD_COMMENT',
-    postId,
-    author,
-    comment
+    payload: request
   };
 }
 
@@ -43,3 +52,33 @@ export function fetchPosts() {
       .then(json => dispatch(receivePosts(json)))
   }
 }
+
+// export function requestAddComment(author, text) {
+//   return {
+//     type: 'REQUEST_ADD_COMMENT',
+//     author,
+//     text
+//   }
+// }
+//
+export function addCommentSuccess(comments) {
+  return {
+    type: 'RECEIVE_COMMENTS',
+    comments
+  }
+}
+
+
+
+// export function fetchComments(author, text) {
+//   return dispatch => {
+//     dispatch(requestAddComment(author, text));
+//
+//     $.ajax({
+//       type: 'POST',
+//       url: '/api/comments',
+//       data: { author, text } })
+//       .then(response => response.json())
+//       .then(json => dispatch(receiveComments(json)))
+//   }
+// }

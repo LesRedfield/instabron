@@ -19,10 +19,18 @@ api
           .catch(next);
   })
   .post('/comments', function(req, res, next) {
-      console.log(req);
+      Comment.create({
+        user: req.author,
+        post_id: parseInt(req.postId),
+        text: req.comment
+      })
+      .then(result => {
+          res.status(200).send(result);
+      })
+      .catch(next);
   })
-  .use('/users', users)
+  // .use('/users', users)
   // .use('/posts', posts)
-  .use('/comments', comments)
+  // .use('/comments', comments)
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end())

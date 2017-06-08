@@ -4,25 +4,25 @@ const Post = require('../db/models/post');
 
 const router = require('express').Router()
 
-router.get('/', function(req, res, next) {
-    Comment.findAll({
-            include: [Post]
-        })
-        .then(result => {
-            res.status(200).send(result);
-        })
-        .catch(next);
-});
-
-router.get('/:id', function(req, res, next) {
-    Comment.findOne({
-            where:{id:req.params.id},
-            include: [Post]
-        })
-        .then(result => {
-            res.status(200).send(result);
-        })
-        .catch(next);
-});
+// router.post('/', function(req, res, next) {
+//     Comment.findAll({
+//             include: [Post]
+//         })
+//         .then(result => {
+//             res.status(200).send(result);
+//         })
+//         .catch(next);
+// });
+//
+// router.get('/:id', function(req, res, next) {
+//     Comment.findOne({
+//             where:{id:req.params.id},
+//             include: [Post]
+//         })
+//         .then(result => {
+//             res.status(200).send(result);
+//         })
+//         .catch(next);
+// });
 
 module.exports = router;

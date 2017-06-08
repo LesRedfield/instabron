@@ -11,6 +11,7 @@ const Comment = db.define('comments', {
     type: Sequelize.INTEGER,
     primaryKey: true,
     allowNull: false,
+    autoIncrement: true
   },
   user: {
     type: Sequelize.STRING,
