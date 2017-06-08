@@ -19,10 +19,18 @@ const Comments = React.createClass({
     e.preventDefault();
 
     const { postId } = this.props.params;
-    const author = this.refs.author.value;
-    const comment = this.refs.comment.value;
+    const user = this.refs.author.value;
+    const text = this.refs.comment.value;
 
-    this.props.addComment(postId, author, comment);
+    const comment = {
+      user,
+      postId,
+      text
+    }
+
+    debugger
+
+    this.props.addComment(comment);
     this.refs.commentForm.reset();
   },
 

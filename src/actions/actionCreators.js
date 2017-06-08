@@ -8,14 +8,9 @@ export function increment(index) {
   };
 }
 
-export function addComment(postId, author, comment) {
+export function addComment(props) {
   console.log('1');
-  debugger
-  const request = axios.post('/api/comments', {
-    postId: postId,
-    author: author,
-    comment: comment
-  });
+  const request = axios.post('/api/comments', props);
 
   return {
     type: 'ADD_COMMENT',

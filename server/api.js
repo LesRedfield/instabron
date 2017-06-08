@@ -19,10 +19,15 @@ api
           .catch(next);
   })
   .post('/comments', function(req, res, next) {
+      const user = req.user;
+      const post_id = parseInt(req.postId);
+      const text = req.text;
+
       Comment.create({
-        user: req.author,
-        post_id: parseInt(req.postId),
-        text: req.comment
+        id: 8,
+        user: user,
+        post_id: post_id,
+        text: text
       })
       .then(result => {
           res.status(200).send(result);
