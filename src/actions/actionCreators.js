@@ -1,28 +1,24 @@
 import axios from 'axios';
 
 
-export function increment(index) {
+export function increment(id) {
   return {
     type: 'INCREMENT_LIKES',
-    index
+    id
   };
 }
 
 export function addComment(props) {
-  console.log('1');
-  const request = axios.post('/api/comments', props);
-
   return {
     type: 'ADD_COMMENT',
-    payload: request
+    props
   };
 }
 
-export function removeComment(postId, i) {
+export function removeComment(id) {
   return {
     type: 'REMOVE_COMMENT',
-    i,
-    postId
+    id
   };
 }
 
@@ -48,32 +44,26 @@ export function fetchPosts() {
   }
 }
 
-// export function requestAddComment(author, text) {
-//   return {
-//     type: 'REQUEST_ADD_COMMENT',
-//     author,
-//     text
-//   }
-// }
-//
-export function addCommentSuccess(comments) {
-  return {
-    type: 'RECEIVE_COMMENTS',
-    comments
+export function createComment(props) {
+  return dispatch => {
+    dispatch(addComment(props))
+    return axios.post('/api/comments', props)
+      .then(json => dispatch(fetchPosts()))
   }
 }
 
+export function deleteComment(id) {
+  return dispatch => {
+    dispatch(removeComment(id))
+    return axios.delete(`/api/comment/${id}`)
+      .then(json => dispatch(fetchPosts()))
+  }
+}
 
-
-// export function fetchComments(author, text) {
-//   return dispatch => {
-//     dispatch(requestAddComment(author, text));
-//
-//     $.ajax({
-//       type: 'POST',
-//       url: '/api/comments',
-//       data: { author, text } })
-//       .then(response => response.json())
-//       .then(json => dispatch(receiveComments(json)))
-//   }
-// }
+export function incrementLikes(id) {
+  return dispatch => {
+    dispatch(increment(id))
+    return axios.put(`/api/post/${id}`)
+      .then(json => dispatch(fetchPosts()))
+  }
+}

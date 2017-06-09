@@ -8,17 +8,17 @@ const Post = require('./post');
 
 const Comment = db.define('comments', {
   id: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.UUID,
     primaryKey: true,
     allowNull: false,
-    autoIncrement: true
+    defaultValue: Sequelize.UUIDV4
   },
   user: {
     type: Sequelize.STRING,
     allowNull: false
   },
   post_id: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.UUID,
     allowNull: false,
   },
   text: {

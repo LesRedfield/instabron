@@ -7,7 +7,7 @@ const Single = React.createClass({
     const { postId } = this.props.params;
 
     const i = this.props.posts.findIndex((post) =>
-      post.id === parseInt(postId));
+      post.id === postId);
     const post = this.props.posts[i];
 
     const postComments = post.comments || [];

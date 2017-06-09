@@ -19,20 +19,46 @@ api
           .catch(next);
   })
   .post('/comments', function(req, res, next) {
-      const user = req.user;
-      const post_id = parseInt(req.postId);
-      const text = req.text;
+      const user = req.body.user;
+      const post_id = req.body.postId;
+      const text = req.body.text;
 
       Comment.create({
-        id: 8,
         user: user,
         post_id: post_id,
         text: text
       })
-      .then(result => {
-          res.status(200).send(result);
+          .then(result => {
+              res.status(200).send(result);
+          })
+          .catch(next);
+  })
+  .delete('/comment/:id', (req, res) => {
+      const id = req.params.id;
+
+      Comment.destroy({
+        where: { id: id }
       })
-      .catch(next);
+          .then(deletedComment => {
+            res.json(deletedComment);
+          })
+  })
+  .put('/post/:id', (req, res) => {
+      const id = req.params.id;
+
+      Post.find({
+        where: { id: id }
+      })
+          .then(post => {
+              const prevLikes = post.likes;
+
+              return post.updateAttributes({
+                  likes: prevLikes + 1
+              })
+          })
+          .then(updatedPost => {
+              res.json(updatedPost);
+          })
   })
   // .use('/users', users)
   // .use('/posts', posts)

@@ -5,10 +5,10 @@ const db = require('../index.js');
 
 const Post = db.define('posts', {
   id: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.UUID,
     primaryKey: true,
     allowNull: false,
-    autoIncrement: true
+    defaultValue: Sequelize.UUIDV4
   },
   caption: {
   	type: Sequelize.STRING,
