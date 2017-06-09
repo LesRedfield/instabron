@@ -11,12 +11,20 @@ function posts(state = [], action) {
     case 'REQUEST_POSTS' :
       return state;
     case 'RECEIVE_POSTS' :
-      return [...action.posts].sort((a, b) => a.id - b.id);
+      return [...action.posts].sort((a, b) => {
+        const createA = a.created_at;
+        const createB = b.created_at;
 
-    // debugger
-    //   return Object.assign({}, state, {
-    //     posts: action.posts
-    //   });
+        if (createA < createB) {
+          return -1;
+        }
+        if (createA > createB) {
+          return 1;
+        }
+
+        return 0;
+      });
+
     default:
       return state;
   }
