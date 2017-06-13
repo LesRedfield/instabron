@@ -38,8 +38,9 @@ export function receivePosts(json) {
 export function fetchPosts() {
   return dispatch => {
     dispatch(requestPosts())
-    return fetch(`/api/posts`)
-      .then(response => response.json())
+    // return fetch(`/api/posts`)
+    return axios.get('/api/posts')
+      .then(response => response.data)
       .then(json => dispatch(receivePosts(json)))
   }
 }
